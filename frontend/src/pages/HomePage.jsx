@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <div className='home-container'>
       <h1 className='home-title'> 
-        Bem-vindo(a), {user ? user.name : 'Visitante'}! 
+        Bem-vindo(a), {user ? user.username : 'Visitante'}! 
       </h1>
       <p className='home-text'>
         Esta é a home. Você {user ? 'fez o login com sucesso!!' : 'não está logado.'}
