@@ -63,7 +63,7 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
    ```env
    MONGO_URI=mongodb+srv://<usuario>:<senha>@cluster0.mongodb.net/seubanco
    JWT_SECRET=suaChaveUltraSecreta
-   PORT=5173
+   PORT=5000
    ```
    > Substitua `<usuario>`, `<senha>` e `suaChaveUltraSecreta` pelos seus dados reais.
 
