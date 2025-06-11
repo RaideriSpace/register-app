@@ -1,0 +1,25 @@
+{
+  "name": "register-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaideriSpace/register-app.app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaideriSpace/register-app/issues"
+  },
+  "homepage": "https://github.com/RaideriSpace/register-app#readme",
+  "description": "",
+  "dependencies": {
+    "bfg": "^0.3.0",
+    "git-filter-repo": "^0.0.30"
+  }
+}
