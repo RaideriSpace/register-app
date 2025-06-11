@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+git-filter-repo.py
 
 # Editor directories and files
 .vscode/*
