@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 // Criando o contexto de autenticação
 const AuthContext = createContext(null);
