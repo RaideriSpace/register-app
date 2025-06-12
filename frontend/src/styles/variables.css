@@ -1,44 +1,53 @@
 :root {
-
+  /* Cores Primárias (Roxo/Violeta) */
   --primary-ex-light: #8c73b5;
   --primary-light: #583989;
   --primary: #3f2667;
   --primary-dark: #281645;
   --primary-ex-dark: #120920;
 
+  /* Cores Secundárias (Rosa/Magenta) */
   --secondary-ex-light: #ebadca;
   --secondary-light: #e15194;
   --secondary: #e01f79;
   --secondary-dark: #B91360;
   --secondary-ex-dark: #610530;
   --secondary-ex-dark-opacity: #ebadca90;
+  /* Opacidade com 90% */
 
+  /* Cores Terciárias (Ciano/Turquesa) */
   --tertiary-ex-light: #84e7f5;
   --tertiary-light: #1addf9;
   --tertiary: #00c5e2;
   --tertiary-dark: #0097ad;
   --tertiary-ex-dark: #003e47;
   --tertiary-ex-dark-opacity: #003e4790;
+  /* Opacidade com 90% */
 
-  --auxiliary1-ex-light:#9dacc3;
-  --auxiliary1-light:#5274a7;
-  --auxiliary1:#3d5b8a;
-  --auxiliary1-dark:#29436a;
-  --auxiliary1-ex-dark:#0b1423;
+  /* Cores Auxiliares 1 (Azul Acinzentado) */
+  --auxiliary1-ex-light: #9dacc3;
+  --auxiliary1-light: #5274a7;
+  --auxiliary1: #3d5b8a;
+  --auxiliary1-dark: #29436a;
+  --auxiliary1-ex-dark: #0b1423;
 
-  --auxiliary2-ex-light:#d3d4df;
-  --auxiliary2-light:#8f94bd;
-  --auxiliary2:#6870b0;
-  --auxiliary2-dark:#49539c;
-  --auxiliary2-ex-dark:#22295d;
+  /* Cores Auxiliares 2 (Azul/Roxo Mais Claro) */
+  --auxiliary2-ex-light: #d3d4df;
+  --auxiliary2-light: #8f94bd;
+  --auxiliary2: #6870b0;
+  --auxiliary2-dark: #49539c;
+  --auxiliary2-ex-dark: #22295d;
 
+  /* Cores Escuras (Grayscale/Preto) */
   --dark-ex-light: #535181;
   --dark-light: #262447;
   --dark: #121125;
   --dark-dark: #020104;
   --dark-dark-opacity: #02010450;
+  /* Opacidade com 50% */
   --dark-ex-dark: #000000;
 
+  /* Cores de Propósito Geral (Bootstrap-like) */
   --primary-color: #007bff;
   --secondary-color: #6c757d;
   --success-color: #28a745;

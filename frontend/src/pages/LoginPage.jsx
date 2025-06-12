@@ -3,72 +3,73 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
+import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 
 const LoginPage = () => {
   // Inicializa o hook
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // Armazenar os valores dos campos de input
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   // Lidar com erros ou mensagens de carregamento
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Lidar com o envio do formulário de login
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Impedir o comportamento padrão de recarregar a página
-    setError(''); // Limpa mensagens de erro anteriores
-    setLoading(true); // Ativa estado de carregamento
+  // Inicializa o useForm
+  const { register, handleSubmit, formState: { errors } } =  useForm();
 
-    // Validação
-    if (!email || !password) {
-      setError('Por favor, preencha todos os campos.');
-      setLoading(false);
-      return;
-    }
+  // Recebe os dados validados do formulário
+  const onSubmit = async (data) => {
+    setError('');
+    setLoading(true);
 
     try {
-      // Chama a função de login do contexto
-      await login(email, password);
+      await login(data.email, data.password);
       console.log('Login bem-sucedido!');
       navigate('/');
     } catch (err) {
-      // Capturar erros de requisição
-      setError(err.message || 'Ocorreu um erro ao tentar fazer login. Tente novamente.');
+      setError(err.message || 'Erro ao tentar fazer login. Tente novamente.');
       console.error('Erro de login: ', err);
     } finally {
-      setLoading(false); // Desativa o estado de carregamento
+      setLoading(false);
     }
   };
 
   return (
     <div className='auth-container'>
       <h2 className='auth-title'> Login </h2>
-      <form className='auth-form' onSubmit={handleSubmit}>
+      <form className='auth-form' onSubmit={handleSubmit(onSubmit)}>
         {error && <p className='auth-error'>{error}</p>}
 
         <InputField
           label='Email'
           type='email'
           id='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}  // Atualiza o estado
           placeholder='seuemail@exemple.com'
-          required
+          {...register('email', { 
+            required: 'Por favor, digite um e-mail.', 
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              message: 'Email inválido'
+            }
+          })}
         />
+        {errors.email && <p className='auth-error'> {errors.email.message} </p>}
                 
         <InputField 
           label='Senha'
           type='password'
           id='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} // Atualiza o estado
           placeholder='•••••••'
-          required
+          {...register('password', { 
+            required: 'Por favor, digite uma senha.', 
+            minLength: {
+              value: 6,
+              message: 'A senha deve ter no mínimo 6 caracteres'
+            }
+          })}
         />
+        { errors.password && <p className='auth-error'> {errors.password.message} </p>}
 
         <Button type='submit' disabled={loading}>
           {loading ? 'Entrando...' : 'Entrar'} {/* Texto que altera com o estado do botão */}
@@ -81,5 +82,8 @@ const LoginPage = () => {
     </div>
   );
 };
+
+LoginPage.PropTypes = {
+}
 
 export default LoginPage

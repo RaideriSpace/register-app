@@ -3,63 +3,34 @@ import { Link, useNavigate } from 'react-router-dom';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
+import { useForm } from 'react-hook-form';
+
+import PropTypes from 'prop-types';
 
 const RegisterPage = () => {
 
   const navigate = useNavigate();
-  const { register } = useAuth();
-
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const { register: authRegister } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Inicializa o useForm
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+
+  const password = watch('password', ''); // Observa o campo password
+
+  // Recebe os dados validados
+  const onSubmit = async (data) => {
     setError('');
-    setSuccess('');
     setLoading(true);
 
-    if(!username || !email || !password || !confirmPassword) {
-      setError('Por favor, preencha todos os campos.');
-      setLoading(false);
-      return;
-    }
-
-    if (password.length < 6) {
-      setError('A senha deve ter no mínimo 6 caracteres.');
-      setLoading(false);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError ('As senhas não coincidem.');
-      setLoading (false);
-      return;
-    }
-
     try {
-      // Registo da API
-      await register(username, email, password);
-
-      setSuccess('Cadastro realizado com sucesso! Você será redirecionado para o login.');
-
-      setUsername('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000); // Redireciona após 2 segundos
-
+      await authRegister(data.username, data.email, data.password); 
+      console.log('Registro bem-sucedido!');
+      navigate('/');
     } catch (err) {
-      // Erros lançados pelo contexto são capturados aqui.
-      setError (err.message || 'Ocorreu um erro ao tentar se cadastrar. Tente novamente.');
-      console.error('Erro de cadastro: ', err);
+      setError(err.message || 'Houve um erro no registro. Tente novamente.');
+      console.error('Erro de registro: ', err);
     } finally {
       setLoading(false);
     }
@@ -69,49 +40,66 @@ const RegisterPage = () => {
     <div className='auth-container'>
       <h2 className='auth-title'> Cadastro </h2>
         
-      <form onSubmit={handleSubmit} className='auth-form'>
+      <form className='auth-form' onSubmit={handleSubmit(onSubmit)}>
         {error && <p className='auth-error'> {error} </p>}
-        {success && <p className='auth-success'> {success} </p>}
 
         <InputField
           label='Nome de Usuário'
           type='text'
           id='username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
           placeholder='Seu nome'
-          required
+          {...register('username', { 
+            required: 'Por favor, digite um nome de usuário.', 
+            minLength: {
+              value: 2,
+              message: 'O nome de usuário deve ter no mínimo 2 caracteres'
+            }
+          })}
         />
+        {errors.username && <p className='auth-error'> {errors.username.message} </p>}
 
         <InputField
           label = 'Email'
           type = 'email'
           id='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           placeholder='seuemail@example.com'
-          required
+          {...register('email', { 
+            required: 'Por favor, digite um email.', 
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              message: 'Email inválido'
+            }
+          })}
         />
+        {errors.email && <p className='auth-error'> {errors.email.message} </p>}
 
         <InputField
           label='Senha'
           type='password'
           id='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder='•••••••'
-          required
+          {...register('password', { 
+            required: 'Digite uma senha', 
+            minLength: {
+              value: 6,
+              message: 'A senha deve ter no mínimo 6 caracteres'
+            }
+          })}
         />
+        {errors.password && <p className='auth-error'> {errors.password.message} </p>}
 
         <InputField
           label='Confirmar Senha'
           type='password'
           id='confirmPassword'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder='•••••••'
-          required
+          {...register('confirmPassword', {
+            required: 'Por favor, confirme sua senha.',
+            validate: value =>
+              value === password || 'As senhas não coincidem'
+          })}
         />
+        {errors.confirmPassword && <p className='auth-error'>{errors.confirmPassword.message}</p>}
 
         <Button type='submit' disabled={loading}>
           {loading ? 'Cadastrando...' : 'Cadastrar'}
@@ -125,5 +113,7 @@ const RegisterPage = () => {
     </div>
   )
 }
+
+RegisterPage.propTypes = {}
 
 export default RegisterPage

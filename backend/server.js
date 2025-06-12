@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
-const authMiddleware = require('./middleware/authMiddleware');
+const { protect } = require('./middleware/authMiddleware');
 require('dotenv').config();
 
 const app = express();
@@ -18,8 +18,7 @@ app.use(cors());    // Habilita o CORS para permitir requisições do frontend
 app.use('/api/auth', authRoutes); // Todas as rotas em authRoutes serão prefixadas com /api/auth
 
 // Rota de Exemplo Protegida
-const { protect } = require('./middleware/authMiddleware');
-app.get('/api/protected', authMiddleware, (req, res) => {
+app.get('/api/protected', protect, (req, res) => {
   // req.user estará disponível aqui pelo authMiddleware
   res.json({ msg: `Bem-vindo(a), ${req.user.username}! Esta é uma rota protegida.`})
 });

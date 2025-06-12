@@ -1,13 +1,18 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
-module.exports = function (req, res, next) {
+const protect = (req, res, next) => {
   // Obter o token do cabeçalho
-  const token = req.header('x-auth-token');
-
   // Verifica se não há token
+  let token;
+
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.header('x-auth-token')) {
+    token = req.header('x-auth-token');
+  }
+
   if (!token) {
-    return res.status(401).json({ msg: 'Nenhum token, autorização negada.'});
+    return res.status(401).json({ message: 'Nenhum token fornecido, autorização negada.'});
   }
 
   try {
@@ -18,6 +23,9 @@ module.exports = function (req, res, next) {
     req.user = decoded.user;
     next(); // Prosseguir para a próxima função middleware/rota
   } catch (err) {
-    res.status(401).json({ msg: 'Token não é válido. '});
+    console.error('Erro de autenticação do token: ', err.message);
+    res.status(401).json({ message: 'Token não é válido ou expirou. '});
   }
 };
+
+module.exports = { protect };

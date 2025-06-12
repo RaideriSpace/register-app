@@ -14,6 +14,9 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
 - 🔒 **Rotas Protegidas:** apenas usuários autenticados podem acessar páginas restritas.
 - 💾 **Persistência de Sessão:** usuário continua logado mesmo após atualizar a página (via `localStorage`).
 - ♻️ **Componentes Reutilizáveis:** formulários e botões criados como componentes modulares no React.
+- 🗑️ **Exclusão de Conta:** funcionalidade para usuários deletarem suas próprias contas de forma segura.
+- ✨ **Validação de Formulários Avançada:** uso de React Hook Form para gerenciamento e validação de formulários.
+
 
 ---
 
@@ -22,9 +25,12 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
 ### 🖼️ **Frontend (React.js)**
 - [React.js](https://react.dev/) — construção da interface.
 - [React Router DOM](https://reactrouter.com/) — gerenciamento de rotas SPA.
+- [React Hooke Form](https://react-hook-form.com/) — gerenciamento e validação de formulários.
+- [PropTypes](https://www.npmjs.com/package/prop-types) — validação de tipos de propriedades em componentes React.
 - Context API — controle de estado global (autenticação).
 - Fetch API — comunicação HTTP com o backend.
 - [Vite](https://vitejs.dev/) — build rápido e moderno para projetos React.
+- [Serve](https://www.npmjs.com/package/serve) — para servir o frontend em produção.
 
 ### 🔗 **Backend (Node.js + Express)**
 - [Node.js](https://nodejs.org/) — ambiente de execução JavaScript.
@@ -71,7 +77,7 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
    ```bash
    node server.js
    ```
-   O backend rodará em [http://localhost:5173](http://localhost:5173).
+   O backend rodará em [http://localhost:5000](http://localhost:5000).
 
 ---
 
@@ -89,7 +95,7 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
    ```
 3. Crie um arquivo `.env.development` na raiz de `frontend`:
    ```env
-   VITE_API_BASE_URL=http://localhost:5173/api
+   VITE_API_BASE_URL=http://localhost:5000/api
    ```
 
 4. Inicie o projeto React:
@@ -109,6 +115,7 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
 3. Após registro bem-sucedido, será autenticado automaticamente e levado à **Home**.
 4. Tentativas de acessar rotas protegidas sem login redirecionarão para o Login.
 5. Clique em "**Sair**" para fazer logout.
+6. Na Home, você pode clicar em "**Excluir Conta**" para remover sua conta permanentemente.
 
 ---
 
@@ -116,11 +123,16 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
 
 Para ambientes de produção (Heroku, Vercel, Netlify, AWS, etc.):
 
-- **Backend:** configure `MONGO_URI`, `JWT_SECRET`, `PORT` na plataforma de deploy.
-- **Frontend:** crie `.env.production` com:
-   ```env
-   VITE_API_BASE_URL=https://seu-backend-deploy.com/api
-   ```
+- **Backend:** 
+  • URL: https://register-app-backend.onrender.com
+  • Configure `MONGO_URI`, `JWT_SECRET`, `PORT` na plataforma de deploy.
+- **Frontend:** 
+  • URL: https://register-app-frontend.onrender.com
+  • Crie `.env.production` com:
+    ```env
+    VITE_API_BASE_URL=https://register-app-backend.onrender.com/api/auth 
+    ```
+    > Substitua https://register-app-backend.onrender.com pela URL real do seu serviço de backend no Render.
 
 ---
 
