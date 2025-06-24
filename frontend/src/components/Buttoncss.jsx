@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@mui/material/Button';
 
-const MuiButton = ({ children, type='button', onClick, disabled, style }) => {
+const Buttoncss = ({ children, type='button', onClick, disabled, style }) => {
   return (
-    <Button
+    <button
       type={type}
-      variant='contained'
+      className='auth-button'
       onClick={onClick}
       disabled={disabled}
-      sx = {style}
-      fullWidth
-      size='large'
+      style = {style}
     >
       {children} {/* Para passar texto ou ícones como filhos */}
-    </Button>
+    </button>
   );
 };
 
-MuiButton.propTypes = {
+Button.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.string,
   onClick: PropTypes.func,
@@ -26,11 +23,11 @@ MuiButton.propTypes = {
   style: PropTypes.object,
 };
 
-MuiButton.defaultProps = {
+Button.defaultProps = {
   type: 'button',
   onClick: () => {},
   disabled: false,
   style: {},
 };
 
-export default MuiButton
+export default Buttoncss

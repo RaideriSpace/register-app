@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext'; 
-import Button from '../components/Button';
+import MuiButton from '../components/Button';
 import PropTypes from 'prop-types';
+
+import Box from '@mui/material/box';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
 
 const HomePage = () => {
   // Obtem usuário, a função de logout e a função de delete
@@ -35,31 +39,60 @@ const HomePage = () => {
   }
 
   return (
-    <div className='home-container'>
-      <h1 className='home-title'> 
-        Bem-vindo(a), {user ? user.username : 'Visitante'}! 
-      </h1>
-      <p className='home-text'>
-        Esta é a home. Você {user ? 'fez o login com sucesso!!' : 'não está logado.'}
-      </p>
+    <Box
+      sx={{
+        backgroundColor: 'var(--auxiliary2-ex-dark)',
+        padding: { xs: '30px 20px', sm: '50px' },
+        borderRadius: '10px',
+        boxShadow: '0 4px 15px var(--tertiary-ex-dark-opacity)',
+        width: '100%',
+        maxWidth: '600px',
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        alignItems: 'center',
+        color: 'white',
+      }}
+    >
+      <Typography
+        variant='h4'
+        component='h1'
+        sx={{ marginBottom: '10px', color: 'var(--secondary)' }}
+      >
+        Bem-vindo(a), {user ? user.username : 'Visitante'}!
+      </Typography>
 
-      {deletionError && <p className='auth-error'>{deletionError}</p>}
+      <Typography
+        variant='body1'
+        sx={{
+          marginBottom: '20px',
+          color: 'white',
+        }}
+      >
+        Esta é a home. Você {user ? 'fez login com sucesso!' : 'Não está logado.'}
+      </Typography>
+      {deletionError && 
+        <Alert severity='error' sx={{ width: '100%', marginBottom: '15px'}}>
+          {deletionError}
+        </Alert>
+      }
 
-      { user && ( // Mostra o botão de logout apenas se houve um usuário logado
+      { user && (
         <>
-          <Button onClick={handleLogout}>
+          <MuiButton onClick={handleLogout} style={{ backgroundColor: 'var(--primary)' }}>
             Logout
-          </Button>
-          <Button
+          </MuiButton>
+          <MuiButton
             onClick={handleDeleteAccount}
             style={{ backgroundColor: '#dc3545', marginTop: '10px' }}
             disabled={deletionLoading} // Desabilita enquanto a exclusão está em andamento.
           >
             {deletionLoading ? 'Excluindo...' : 'Exluir Conta'}
-          </Button>
+          </MuiButton>
         </>
       )}
-    </div>
+    </Box>
   );
 };
 

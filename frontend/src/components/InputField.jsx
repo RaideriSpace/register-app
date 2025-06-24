@@ -1,22 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import TextField from '@mui/material/TextField'
 
-const InputField = ({ label, id, type, placeholder, ...props }) => {
+const InputField = React.forwardRef(({ label, id, type, placeholder, ...props }, ref) => {
   return (
-    <div className='input-group'>
-      <label htmlFor={id} className='input-label'> 
-        {label} 
-      </label>
-      <input
-        type={type}
-        id={id}
-        className='input-field'
-        placeholder={placeholder}
-        {...props}
-      />
-    </div>
+    <TextField
+      label={label}
+      type={type}
+      placeholder={placeholder}
+      variant='outlined'
+      fullWidth
+      margin='normal'
+      inputRef={ref}
+      sx={{
+        '& .MuiInputLabel-root': {
+            color: 'white',
+        },
+        '& .MuiInputLabel-root.Mui-focused': {
+            color: 'var(--secondary-dark)',
+        },
+        '& .MuiInputBase-input': {
+            color: 'white',
+        },
+        '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white',
+        },
+        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--secondary)',
+        },
+        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--secondary-ex-dark)',
+        },
+        // Estiliza o texto de ajuda (helperText), se houver
+        '& .MuiFormHelperText-root': {
+            color: 'white',
+        },
+      }}
+      {...props}
+    />
   );
-};
+});
 
 InputField.propTypes = {
   label: PropTypes.string.isRequired,
