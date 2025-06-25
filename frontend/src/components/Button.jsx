@@ -9,7 +9,20 @@ const MuiButton = ({ children, type='button', onClick, disabled, style }) => {
       variant='contained'
       onClick={onClick}
       disabled={disabled}
-      sx = {style}
+      sx = {{
+        fontWeight: 'bold',
+        ...style,
+        '&:hover':{
+          backgroundColor: style?.backgroundColor 
+            ? `var(${style.backgroundColor.replace('var(', '').replace(')', '')}-dark)`
+            : undefined,
+          opacity: 0.9,
+        },
+        '&.Mui-disabled': {
+          backgroundColor: 'var(--secondary-ex-dark)',
+          color: 'rgba(255, 255, 255, 0.5)',
+        }
+      }}
       fullWidth
       size='large'
     >

@@ -80,12 +80,12 @@ const HomePage = () => {
 
       { user && (
         <>
-          <MuiButton onClick={handleLogout} style={{ backgroundColor: 'var(--primary)' }}>
+          <MuiButton onClick={handleLogout} style={{ backgroundColor: 'var(--tertiary)', color: 'var(--secondary-ex-dark)' }}>
             Logout
           </MuiButton>
           <MuiButton
             onClick={handleDeleteAccount}
-            style={{ backgroundColor: '#dc3545', marginTop: '10px' }}
+            style={{ backgroundColor: '#dc4545', marginTop: '10px' }}
             disabled={deletionLoading} // Desabilita enquanto a exclusão está em andamento.
           >
             {deletionLoading ? 'Excluindo...' : 'Exluir Conta'}

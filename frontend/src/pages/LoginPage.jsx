@@ -56,7 +56,7 @@ const LoginPage = () => {
         color: 'white',
       }}
     >
-      <Typography variant='h5' component='h2' sx={{ marginBottom: '10px', color: 'white'}}>
+      <Typography variant='h5' component='h2' sx={{ marginBottom: '10px', color: 'white', fontWeight: 'bold'}}>
         Login
       </Typography>
       {authError && <Alert severity='error' sx={{ width: '100%' }}> {authError} </Alert>}
@@ -109,7 +109,7 @@ const LoginPage = () => {
         
       <Typography variant='body2' sx={{ marginTop: '5px' }}>
         Não tem uma conta? 
-        <Link to='/register' style={{ color: 'var(--secondary', textDecoration: 'none' }}>
+        <Link to='/register' style={{ color: 'var(--secondary', textDecoration: 'none', fontWeight: 'bold'}}>
           &nbsp;Cadastre-se
         </Link>
       </Typography>

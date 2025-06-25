@@ -61,7 +61,8 @@ const RegisterPage = () => {
         component='h2'
         sx={{ 
           marginBottom: '10px',
-          color: 'white'
+          color: 'white',
+          fontWeight: 'bold',
         }}
       >
         Cadastro
@@ -147,7 +148,7 @@ const RegisterPage = () => {
 
       <Typography variant='body2' sx={{ marginTop: '5px'}}>
         Já tem uma conta? 
-        <Link to='/login' style={{ color: 'var(--secondary)', textDecoration: 'none'}}>
+        <Link to='/login' style={{ color: 'var(--secondary)', textDecoration: 'none', fontWeight: 'bold'}}>
           &nbsp;Fazer Login
         </Link>
       </Typography>
