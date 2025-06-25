@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import MuiButton from '../components/Button';
 import PropTypes from 'prop-types';
 
-import Box from '@mui/material/box';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 
