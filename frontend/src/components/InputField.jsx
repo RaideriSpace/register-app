@@ -31,10 +31,20 @@ const InputField = React.forwardRef(({ label, id, type, placeholder, ...props },
         '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: 'var(--secondary-ex-dark)',
         },
-        // Estiliza o texto de ajuda (helperText), se houver
         '& .MuiFormHelperText-root': {
             color: 'white',
         },
+
+        // ESTILOS PARA AUTOFILL DO NAVEGADOR
+        '& input:-webkit-autofill': {
+          '-webkit-box-shadow': '0 0 0 100px var(--auxiliary2-ex-dark) inset',
+          '-webkit-text-fill-color': 'white', 
+          transition: 'background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s',
+        },
+        '& input:-webkit-autofill:hover': {
+          '-webkit-box-shadow': '0 0 0 100px var(--auxiliary2-ex-dark) inset',
+          '-webkit-text-fill-color': 'white',
+        },      
       }}
       {...props}
     />
