@@ -17,6 +17,37 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
 - 🗑️ **Exclusão de Conta:** funcionalidade para usuários deletarem suas próprias contas de forma segura.
 - ✨ **Validação de Formulários Avançada:** uso de React Hook Form para gerenciamento e validação de formulários.
 
+---
+
+## 🏛️ Arquitetura da Aplicação
+
+Este diagrama ilustra o fluxo de comunicação entre as principais camadas da aplicação:
+
+```bash
+
++------------------+       +-------------------+       +-----------------+
+|     Frontend     |       |      Backend      |       |    Database     |
+|   (React / MUI)  | <---> | (Node.js / Express) | <---> |    (MongoDB)    |
++------------------+       +-------------------+       +-----------------+
+        ▲                            ▲
+        |                            |
+        +----------------------------+
+                Requisições HTTP
+                 (Registro, Login, Exclusão, etc.)
+
+```
+
+### Fluxo
+
+1. O **Frontend** (desenvolvido em React com componentes MUI) interage diretamente com o usuário.
+
+2. Para funcionalidades como registro, login e exclusão de conta, o Frontend envia **Requisições HTTP** (via Fetch API) para o **Backend**.
+
+3. O **Backend** (Node.js com Express) processa essas requisições, realiza a lógica de negócio (validação, hashing de senha, JWT) e interage com o **Database**.
+
+4. O **Database** (MongoDB) armazena e recupera os dados dos usuários.
+
+5. As respostas do Backend são enviadas de volta ao Frontend para atualização da interface do usuário.
 
 ---
 
@@ -26,6 +57,7 @@ O **Frontend** é desenvolvido com **React.js**, enquanto o **Backend** utiliza 
 - [React.js](https://react.dev/) — construção da interface.
 - [React Router DOM](https://reactrouter.com/) — gerenciamento de rotas SPA.
 - [React Hooke Form](https://react-hook-form.com/) — gerenciamento e validação de formulários.
+- [MUI (Material-UI)](https://mui.com/) — biblioteca de componentes React para Material Design.
 - [PropTypes](https://www.npmjs.com/package/prop-types) — validação de tipos de propriedades em componentes React.
 - Context API — controle de estado global (autenticação).
 - Fetch API — comunicação HTTP com o backend.
