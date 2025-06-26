@@ -50,7 +50,7 @@ const HomePage = () => {
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
+        gap: '16px',
         alignItems: 'center',
         color: 'white',
       }}
@@ -58,7 +58,7 @@ const HomePage = () => {
       <Typography
         variant='h4'
         component='h1'
-        sx={{ marginBottom: '10px', color: 'var(--secondary)' }}
+        sx={{ marginBottom: '8px', color: 'var(--secondary)' }}
       >
         Bem-vindo(a), {user ? user.username : 'Visitante'}!
       </Typography>
@@ -66,7 +66,7 @@ const HomePage = () => {
       <Typography
         variant='body1'
         sx={{
-          marginBottom: '20px',
+          marginBottom: '18px',
           color: 'white',
         }}
       >
@@ -85,7 +85,7 @@ const HomePage = () => {
           </MuiButton>
           <MuiButton
             onClick={handleDeleteAccount}
-            style={{ backgroundColor: '#dc4545', marginTop: '10px' }}
+            style={{ backgroundColor: '#dc4545'}}
             disabled={deletionLoading} // Desabilita enquanto a exclusão está em andamento.
           >
             {deletionLoading ? 'Excluindo...' : 'Exluir Conta'}

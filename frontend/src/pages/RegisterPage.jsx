@@ -51,7 +51,6 @@ const RegisterPage = () => {
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
         alignItems: 'center',
         color: 'white',
       }}
@@ -76,7 +75,6 @@ const RegisterPage = () => {
           width: '100%', 
           display: 'flex',
           flexDirection: 'Column',
-          gap: '20px',
         }}
       >
         <InputField
@@ -139,11 +137,12 @@ const RegisterPage = () => {
           })}
           error={!!errors.confirmPassword}
           helperText={errors.confirmPassword ? errors.confirmPassword.message : ''}
-        />
-
-        <MuiButton type='submit' disabled={loading} style={{ backgroundColor: 'var(--secondary)'}}>
-          {loading ? 'Cadastrando...' : 'Cadastrar'}
-        </MuiButton>    
+        />  
+        
+        <MuiButton type='submit' disabled={loading} style={{ backgroundColor: 'var(--secondary)', margin:'14px 0' }}>
+        {loading ? 'Cadastrando...' : 'Cadastrar'}
+        </MuiButton> 
+         
       </Box>
 
       <Typography variant='body2' sx={{ marginTop: '5px'}}>

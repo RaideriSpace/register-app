@@ -5,6 +5,7 @@
 }
 
 body {
+  padding: 24px;
   font-family: 'Inter', sans-serif;
   background-image: url(./assets/carouselbg.svg);
   background-size:cover;

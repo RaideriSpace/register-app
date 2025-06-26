@@ -43,7 +43,7 @@ const LoginPage = () => {
     <Box
       sx={{
         backgroundColor: 'var(--auxiliary2-ex-dark)',
-        padding: { xs: '18px 20px', sm: '18px 40px' },
+        padding: {xs: '18px 20px', sm: '18px 40px'},
         borderRadius: '10px',
         boxShadow: '0 4px 15px var(--tertiary-ex-dark-opacity)',
         width: '100%',
@@ -51,7 +51,6 @@ const LoginPage = () => {
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
         alignItems: 'center',
         color: 'white',
       }}
@@ -68,7 +67,6 @@ const LoginPage = () => {
           width: '100%', 
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px'
       }}>
         <InputField
           label='Email'
@@ -102,11 +100,11 @@ const LoginPage = () => {
           helperText={errors.password ? errors.password.message : ''}
         />
 
-        <MuiButton type='submit' disabled={loading} style={{ backgroundColor: 'var(--secondary)'}}>
+        <MuiButton type='submit' disabled={loading} style={{ backgroundColor: 'var(--secondary)', margin: '14px 0'}}>
           {loading ? 'Entrando...' : 'Entrar'} {/* Texto que altera com o estado do botão */}
         </MuiButton>
       </Box>
-        
+
       <Typography variant='body2' sx={{ marginTop: '5px' }}>
         Não tem uma conta? 
         <Link to='/register' style={{ color: 'var(--secondary', textDecoration: 'none', fontWeight: 'bold'}}>
